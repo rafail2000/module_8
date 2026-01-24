@@ -43,6 +43,14 @@ class Lesson(models.Model):
         verbose_name="Название урока",
         help_text="Введите название урока",
     )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Курс",
+        help_text="Выберете курс",
+    )
     description = models.TextField(
         blank=True,
         null=True,
