@@ -2,8 +2,10 @@
 
 Для установки зависимостей в терминале необходимо набрать следующую команду:
 pip install -r requirements.txt
+
 Для миграции базы данных в терминале необходимо набрать следующую команду:
 python manage.py migrate
+
 Для наполнения базы данных в терминале необходимо набрать следующие команды:
 python manage.py loaddata course_fixture.json
 python manage.py loaddata lesson_fixture.json
@@ -25,3 +27,5 @@ python manage.py loaddata payment_fixture.json
     Для модели курса добавлено поле вывода количества уроков с помощью - SerializerMethodField().
 Задание 2:
     Добавлена новая модель Payment в приложение user. 
+Задание 3:
+    Для сериализатора модели курса реализовал поле вывода уроков.

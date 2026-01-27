@@ -14,21 +14,6 @@ class CourseSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class CourseDetailSerializer(ModelSerializer):
-    """
-    Сериализатор для отдельного курса
-    """
-
-    count_lessons_from_with_course = SerializerMethodField()
-
-    def get_count_lessons_from_with_course(self, course):
-        return Lesson.objects.filter(course=course).count()
-
-    class Meta:
-        model = Course
-        fields = ("name", "photo", "description", "count_lessons_from_with_course")
-
-
 class LessonSerializer(ModelSerializer):
     """
     Сериализатор для модели урока
@@ -37,3 +22,20 @@ class LessonSerializer(ModelSerializer):
     class Meta:
         model = Lesson
         fields = "__all__"
+
+
+
+class CourseDetailSerializer(ModelSerializer):
+    """
+    Сериализатор для отдельного курса
+    """
+
+    count_lessons_from_with_course = SerializerMethodField()
+    lesson = LessonSerializer(many=True, read_only=True, source='lessons')
+
+    def get_count_lessons_from_with_course(self, course):
+        return Lesson.objects.filter(course=course).count()
+
+    class Meta:
+        model = Course
+        fields = ("name", "photo", "description", "count_lessons_from_with_course", "lesson")
