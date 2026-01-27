@@ -50,7 +50,7 @@ class Lesson(models.Model):
         blank=True,
         verbose_name="Курс",
         help_text="Выберете курс",
-        related_name='lessons'
+        related_name="lessons",
     )
     description = models.TextField(
         blank=True,
