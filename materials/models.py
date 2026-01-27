@@ -30,7 +30,7 @@ class Course(models.Model):
         verbose_name_plural = "Курсы"
 
     def __str__(self):
-        return self.name, self.description
+        return self.name
 
 
 class Lesson(models.Model):
@@ -50,6 +50,7 @@ class Lesson(models.Model):
         blank=True,
         verbose_name="Курс",
         help_text="Выберете курс",
+        related_name="lessons",
     )
     description = models.TextField(
         blank=True,
@@ -75,4 +76,4 @@ class Lesson(models.Model):
         verbose_name_plural = "Уроки"
 
     def __str__(self):
-        return self.name, self.description
+        return self.name
