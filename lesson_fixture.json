@@ -1,1 +1,24 @@
-[{"model": "materials.course", "pk": 1, "fields": {"name": "Django", "photo": "", "description": "Очень сложный курс по сравнению с тем что было"}}]
+[
+{
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+        "name": "РџРµСЂРІС‹Р№ СѓСЂРѕРє РїРѕ django",
+        "course": 1,
+        "description": "РџРµСЂРІС‹Р№ СѓСЂРѕРє РїРѕ django",
+        "photo": "",
+        "link": "django.com"
+    }
+},
+{
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+        "name": "Р’С‚РѕСЂРѕР№ СѓСЂРѕРє РїРѕ django",
+        "course": 1,
+        "description": "Р’С‚РѕСЂРѕР№ СѓСЂРѕРє РїРѕ django",
+        "photo": "",
+        "link": "django.com"
+    }
+}
+]

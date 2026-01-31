@@ -1,1 +1,11 @@
-[{"model": "materials.course", "pk": 1, "fields": {"name": "Django", "photo": "", "description": "Очень сложный курс по сравнению с тем что было"}}]
+[
+  {
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+      "name": "Django",
+      "photo": "",
+      "description": "РљСѓСЂСЃ РїРѕ django"
+    }
+  }
+]
