@@ -6,7 +6,6 @@ from rest_framework.generics import (CreateAPIView, DestroyAPIView,
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from users.models import Payment, User
-from users.permissions import IsOwnerOrStaff
 from users.serializers import PaymentSerializer, UserSerializer
 
 

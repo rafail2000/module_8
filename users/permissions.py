@@ -1,15 +1,9 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsOwnerOrStaff(BasePermission):
+class IsModerator(BasePermission):
+    message = "Adding course or lessons not allowed."
 
     def has_permission(self, request, view):
+        return request.user.groups.filter(name="Модераторы").exists()
 
-        return request.user.is_authenticated
-
-    def has_object_permission(self, request, view, obj):
-
-        if request.user.is_staff:
-            return True
-
-        return request.user == obj

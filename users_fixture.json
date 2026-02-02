@@ -1,0 +1,44 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$MUATIhWYRe0mXis48ifjlx$FRCglceq8mQ/OIgDdhvbc8KNuPfafOSDFmPCvsGvGQg=",
+        "last_login": "2026-02-02T08:03:08.887Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-01-27T07:32:48.049Z",
+        "email": "admin@example.com",
+        "phone": null,
+        "city": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$DbiaYwlITVpyk16L2nq8No$bfsRJxRIY6FaOucC06v1sFV3duy1GY/pSUOYImCYKUE=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-02T08:09:30Z",
+        "email": "moderator@example.com",
+        "phone": null,
+        "city": null,
+        "avatar": "",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+}
+]

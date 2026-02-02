@@ -9,9 +9,16 @@ python manage.py migrate
 Для наполнения базы данных в терминале необходимо набрать следующие команды:
 python manage.py loaddata course_fixture.json
 python manage.py loaddata lesson_fixture.json
-python manage.py csu
+python manage.py loaddata users_fixture.json
+python manage.py loaddata groups_fixture.json
 python manage.py loaddata payment_fixture.json
 
+Пользователи:
+1 - admin@example.com 
+2 - moderator@example.com
+Пароли:
+1 - 1234
+2 - 1234
 
 
 #Lesson_30.1
@@ -39,3 +46,5 @@ python manage.py loaddata payment_fixture.json
 Задание 1:
     Реализован CRUD для пользователей, в том числе регистрация пользователей,
     настроен в проекте с использованием JWT-авторизации и закрыт каждый эндпоинт авторизацией. 
+Задание 2:
+    Создана группа "Модераторы", добавлены проверки для этой группы в курсоры.
