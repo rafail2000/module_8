@@ -19,7 +19,7 @@ urlpatterns = [
     path('user/update/<int:pk>/', UserUpdateAPIView.as_view(), name='user_update'),
     path('user/delete/<int:pk>/', UserDestroyAPIView.as_view(), name='user_delete'),
     path('login/', TokenObtainPairView.as_view(permission_classes=(AllowAny,)), name='login'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/refresh/', TokenRefreshView.as_view(permission_classes=(AllowAny,)), name='token_refresh'),
 
     # payment
     path("payments/", PaymentListAPIView.as_view(), name="payments_list"),
