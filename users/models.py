@@ -1,8 +1,5 @@
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-from materials.models import Course, Lesson
 
 
 class User(AbstractUser):
@@ -61,7 +58,7 @@ class Payment(models.Model):
     ]
 
     user = models.ForeignKey(
-        User,
+        "users.User",
         on_delete=models.CASCADE,
         verbose_name="Пользователь",
         help_text="Выберете пользователя",
@@ -70,10 +67,18 @@ class Payment(models.Model):
         verbose_name="Дата оплаты", help_text="Введите дату оплаты"
     )
     paid_course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, null=True, blank=True, related_name="payd"
+        "materials.Course",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="payd",
     )
     paid_lesson = models.ForeignKey(
-        Lesson, on_delete=models.CASCADE, null=True, blank=True, related_name="payd"
+        "materials.Lesson",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="payd",
     )
     payment_amount = models.FloatField(
         verbose_name="Сумма оплаты", help_text="Введите сумму оплаты"
@@ -90,4 +95,6 @@ class Payment(models.Model):
         verbose_name_plural = "Платежи"
 
     def __str__(self):
-        return f"{self.user}, оплаченный курс - {self.paid_course}, оплаченный урок - {self.paid_lesson}, сумма оплаты - {self.payment_amount}"
+        return (f"{self.user}, оплаченный курс - {self.paid_course},"
+                f"оплаченный урок - {self.paid_lesson},"
+                f"сумма оплаты - {self.payment_amount}")
