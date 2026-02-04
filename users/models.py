@@ -95,6 +95,8 @@ class Payment(models.Model):
         verbose_name_plural = "Платежи"
 
     def __str__(self):
-        return (f"{self.user}, оплаченный курс - {self.paid_course},"
-                f"оплаченный урок - {self.paid_lesson},"
-                f"сумма оплаты - {self.payment_amount}")
+        return (
+            f"{self.user}, оплаченный курс - {self.paid_course},"
+            f"оплаченный урок - {self.paid_lesson},"
+            f"сумма оплаты - {self.payment_amount}"
+        )

@@ -73,7 +73,10 @@ class LessonRetrieveAPIView(RetrieveAPIView):
 
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated, IsModerator | IsOwner,)
+    permission_classes = (
+        IsAuthenticated,
+        IsModerator | IsOwner,
+    )
 
 
 class LessonUpdateAPIView(UpdateAPIView):
@@ -83,7 +86,10 @@ class LessonUpdateAPIView(UpdateAPIView):
 
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated, IsModerator | IsOwner,)
+    permission_classes = (
+        IsAuthenticated,
+        IsModerator | IsOwner,
+    )
 
 
 class LessonDestroyAPIView(DestroyAPIView):
@@ -110,9 +116,9 @@ class SubscriptionAPIView(APIView):
 
         if subs_item.exists():
             subs_item.delete()
-            message = 'подписка удалена'
+            message = "подписка удалена"
         else:
             Subscription.objects.create(user=user, course=course_item)
-            message = 'подписка добавлена'
+            message = "подписка добавлена"
 
         return Response({"message": message})
