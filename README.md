@@ -51,3 +51,5 @@ python manage.py loaddata payment_fixture.json
 Задание 3:
     Описал права пользователей в курсорах для владельцев и модераторов.
     
+#Lesson_32.1
+Задание 1:

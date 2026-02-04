@@ -1,20 +1,23 @@
+from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
-from rest_framework.serializers import ModelSerializer
 
 from materials.models import Course, Lesson
+from materials.validators import validate_allowed_link
 
 
-class LessonSerializer(ModelSerializer):
+class LessonSerializer(serializers.ModelSerializer):
     """
     Сериализатор для модели урока
     """
+
+    link = serializers.CharField(validators=[validate_allowed_link])
 
     class Meta:
         model = Lesson
         fields = "__all__"
 
 
-class CourseSerializer(ModelSerializer):
+class CourseSerializer(serializers.ModelSerializer):
     """
     Сериализатор для модели курса
     """
@@ -26,7 +29,7 @@ class CourseSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class CourseDetailSerializer(ModelSerializer):
+class CourseDetailSerializer(serializers.ModelSerializer):
     """
     Сериализатор для отдельного курса
     """
