@@ -9,7 +9,7 @@ from users.views import (
     UserDestroyAPIView,
     UserListAPIView,
     UserRetrieveAPIView,
-    UserUpdateAPIView,
+    UserUpdateAPIView, PaymentCreateAPIView,
 )
 
 app_name = UsersConfig.name
@@ -32,5 +32,6 @@ urlpatterns = [
         name="token_refresh",
     ),
     # payment
+    path("payment_create/", PaymentCreateAPIView.as_view(), name="payment_create"),
     path("payments/", PaymentListAPIView.as_view(), name="payments_list"),
 ]

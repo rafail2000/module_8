@@ -49,45 +49,31 @@ class Payment(models.Model):
     Модель платежа
     """
 
-    CASH = "cash"
-    TRANSFER = "transfer"
-
-    PAYMENT_METHOD_CHOICES = [
-        (CASH, "Наличные"),
-        (TRANSFER, "Перевод"),
-    ]
-
+    amount = models.PositiveIntegerField(
+        verbose_name="Сумма платежа",
+        help_text="Введите сумму платежа",
+    )
+    session_id = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name="Id сессии",
+        help_text="Укажите id сессии",
+    )
+    link = models.URLField(
+        max_length=512,
+        null=True,
+        blank=True,
+        verbose_name="Ссылка на оплату",
+        help_text="Укажите ссылку на оплату",
+    )
     user = models.ForeignKey(
         "users.User",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         verbose_name="Пользователь",
-        help_text="Выберете пользователя",
-    )
-    payment_date = models.DateTimeField(
-        verbose_name="Дата оплаты", help_text="Введите дату оплаты"
-    )
-    paid_course = models.ForeignKey(
-        "materials.Course",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="payd",
-    )
-    paid_lesson = models.ForeignKey(
-        "materials.Lesson",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="payd",
-    )
-    payment_amount = models.FloatField(
-        verbose_name="Сумма оплаты", help_text="Введите сумму оплаты"
-    )
-    payment_method = models.CharField(
-        max_length=20,
-        choices=PAYMENT_METHOD_CHOICES,
-        verbose_name="Способ оплаты",
-        help_text="Введите способ оплаты",
+        help_text="Укажите пользователя",
     )
 
     class Meta:
@@ -95,8 +81,4 @@ class Payment(models.Model):
         verbose_name_plural = "Платежи"
 
     def __str__(self):
-        return (
-            f"{self.user}, оплаченный курс - {self.paid_course},"
-            f"оплаченный урок - {self.paid_lesson},"
-            f"сумма оплаты - {self.payment_amount}"
-        )
+        return self.amount
