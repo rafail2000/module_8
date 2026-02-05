@@ -5,7 +5,7 @@ from users.models import Payment, User
 
 class UserSerializer(ModelSerializer):
     """
-    Серилизатор для пользователя
+    Сериализатор для пользователя
     """
 
     class Meta:
@@ -15,7 +15,7 @@ class UserSerializer(ModelSerializer):
 
 class PaymentSerializer(ModelSerializer):
     """
-    Серилизатор для платежей
+    Сериализатор для платежей
     """
 
     class Meta:
