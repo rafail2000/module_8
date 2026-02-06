@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -31,6 +32,11 @@ class User(AbstractUser):
         null=True,
         verbose_name="Аватар",
         help_text="Загрузите аватар",
+    )
+    last_login = models.DateTimeField(
+        default=timezone.now,
+        verbose_name="Последний вход",
+        help_text="Дата и время последнего входа пользователя",
     )
 
     USERNAME_FIELD = "email"

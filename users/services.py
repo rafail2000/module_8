@@ -1,6 +1,6 @@
 import stripe
-from config.settings import STRIPE_API_KEY
 
+from config.settings import STRIPE_API_KEY
 
 stripe.api_key = STRIPE_API_KEY
 
@@ -15,6 +15,7 @@ def create_stripe_price(amount):
         unit_amount=amount * 100,
         product_data={"name": "Payment"},
     )
+
 
 def create_stripe_sessions(price):
     """
