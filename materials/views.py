@@ -1,11 +1,6 @@
-from rest_framework.generics import (
-    CreateAPIView,
-    DestroyAPIView,
-    ListAPIView,
-    RetrieveAPIView,
-    UpdateAPIView,
-    get_object_or_404,
-)
+from rest_framework.generics import (CreateAPIView, DestroyAPIView,
+                                     ListAPIView, RetrieveAPIView,
+                                     UpdateAPIView, get_object_or_404)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,11 +8,9 @@ from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Course, Lesson, Subscription
 from materials.paginations import CustomPagination
-from materials.serializers import (
-    CourseDetailSerializer,
-    CourseSerializer,
-    LessonSerializer,
-)
+from materials.serializers import (CourseDetailSerializer, CourseSerializer,
+                                   LessonSerializer)
+from materials.task import send_information_about_subscription
 from users.permissions import IsModerator, IsOwner
 
 
@@ -116,6 +109,10 @@ class SubscriptionAPIView(APIView):
     """
 
     def post(self, request, *args, **kwargs):
+        """
+        Метод POST для добавления подписки
+        """
+
         user = request.user
         course_id = request.data.get("course_id")
         course_item = get_object_or_404(Course, pk=course_id)
@@ -128,5 +125,23 @@ class SubscriptionAPIView(APIView):
         else:
             Subscription.objects.create(user=user, course=course_item)
             message = "подписка добавлена"
+
+        return Response({"message": message})
+
+    def patch(self, request, *args, **kwargs):
+        """
+        Метод для обновления подписки
+        """
+
+        course_id = request.data.get("course_id")
+        course_item = get_object_or_404(Course, pk=course_id)
+
+        subs_item = Subscription.objects.filter(user=request.user, course=course_item)
+        if subs_item.exists():
+            subs_item.update(user=request.user, course=course_item)
+            send_information_about_subscription.delay(course_item.owner.email)
+            message = "подписка изменена"
+        else:
+            message = "подписка не существует"
 
         return Response({"message": message})
