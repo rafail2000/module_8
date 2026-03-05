@@ -82,3 +82,4 @@ python manage.py loaddata payment_fixture.json
 
 #Lesson_35_2
 
+
