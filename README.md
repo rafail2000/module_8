@@ -80,3 +80,7 @@ python manage.py loaddata payment_fixture.json
     Выполнить в терминале команду:
         docker-compose up --build
 
+#Lesson_35_2
+
+
+
