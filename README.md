@@ -81,6 +81,58 @@ python manage.py loaddata payment_fixture.json
         docker-compose up --build
 
 #Lesson_35_2
+    Для развёртывания приложения на сервер, нужно клонировать приложение в свой репозиторий.
+    1. Создать .env файл с зависимостями на основе env_sample.
+    2. Заполнить следующие поля в github action:
+        DEPLOY_DIR
+        DOCKER_HUB_ACCESS_TOKEN
+        DOCKER_HUB_USERNAME
+        SECRET_KEY
+        SERVER_IP
+        SSH_KEY
+        SSH_USER
+    3. Создать свою виртуальную машину, например на yandex.cloud.
+    4. Настроить виртуальную машину нужно следующими командами:
 
+        # Add Docker's official GPG key:
+        sudo apt update
+        sudo apt upgrade
+        sudo apt update
+        sudo apt install ca-certificates curl
+        sudo install -m 0755 -d /etc/apt/keyrings
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo chmod a+r /etc/apt/keyrings/docker.asc
+        
+        # Add the repository to Apt sources:
 
+        sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+        Types: deb
+        URIs: https://download.docker.com/linux/ubuntu
+        Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+        Components: stable
+        Signed-By: /etc/apt/keyrings/docker.asc
+        EOF
+        
+        sudo apt update
+        
+        sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        
+        Проверка Docker:
+        sudo docker run hello-world
+        
+    5. Настройка Фаервола:
+        sudo ufw allow 22/tcp
+        sudo ufw allow 80/tcp
+        sudo ufw allow 443/tcp
+        sudo ufw enable
+        sudo ufw status
 
+    6. Также нужно добавить файл .env на сервер.
+        Ввести команду и заполнить данные из .env файла:
+            nano ~/.env
+
+    7. Пушить приложение на сервер.
+
+    8. Проверять работоспособность.
+        
+    
